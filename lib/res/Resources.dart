@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:project/res/colors/AppColors.dart';
 import 'package:project/res/dimentions/AppDimension.dart';
 import 'package:project/res/strings/FrenchStrings.dart';
 import 'package:project/res/strings/Strings.dart';
 
+import 'app_colors/AppColors.dart';
 import 'strings/EnglishStrings.dart';
 
 class Resources {
