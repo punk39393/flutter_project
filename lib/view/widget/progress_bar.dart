@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/res/app_colors/AppColors.dart';
+import 'package:project/res/app_colors/app_colors.dart';
 
 
 circularProgress() {

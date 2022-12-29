@@ -8,7 +8,7 @@
 PRODUCT_NAME = flutter_mvvm
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.flutter.maraj.mvvm.flutterMvvm
+PRODUCT_BUNDLE_IDENTIFIER = com.coderootz.rider.flutterMvvm
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2022 com.flutter.maraj.mvvm. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2022 com.coderootz.rider. All rights reserved.

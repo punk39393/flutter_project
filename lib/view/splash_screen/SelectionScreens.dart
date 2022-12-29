@@ -11,7 +11,7 @@ class SelectionScreens extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (sharedPreferences!.getString('email') != null) {
+    if (sharedPreferences.getString('email') != null) {
       return RiderDashBoard;
     } else {
        return AppIntroScreens;

@@ -1,17 +1,39 @@
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:project/utils/Utils.dart';
+import 'package:project/view/authentication/login.dart';
+import 'package:project/view/home/RiderDashBoard.dart';
+import '../../res/app_colors/app_colors.dart';
+import 'package:project/global/global.dart';
 
-import '../../res/app_colors/AppColors.dart';
+import '../../view/widget/simple_app_bar.dart';
 
+final Utils utils = Utils();
+final RiderDashBoard riderDashBoard = RiderDashBoard();
 var defaultBackgroundColor = Colors.grey[300];
 var appBarColor = AppColors.primaryColor;
-var myAppBar = AppBar(
-  backgroundColor: appBarColor,
-  title: const Text('Title'),
-  centerTitle: true,
-);
+
+//var myAppBar = CustomAppBar;
+// AppBar(
+//     backgroundColor: appBarColor,
+//     title: Text("DashBoard"),
+//     centerTitle: true,
+//     actions: [
+//       Switch(
+//         value: riderDashBoard.isOn ,
+//         activeColor: AppColors.green,
+//         onChanged: (bool value) {
+//           riderDashBoard.toggle();
+//         },
+//       ),
+//     ]);
+
 var drawerTextColor = const TextStyle(
   color: AppColors.black,
 );
+var button = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(AppColors.mainColorTwo));
+
 var tilePadding = const EdgeInsets.only(left: 8.0, right: 8, top: 8);
 var myDrawer = Drawer(
   width: 250,
@@ -19,11 +41,23 @@ var myDrawer = Drawer(
   elevation: 0,
   child: Column(
     children: [
-      const DrawerHeader(
-        child: Icon(
-          Icons.favorite,
-          size: 44,
-        ),
+      DrawerHeader(
+      child: Column(
+        children: [
+          Expanded(
+                child: Column(
+                      children: 
+                        [Image(
+                          image: AssetImage('assets/images/logo_coderootz.png'),
+                          width: 100,
+                          height: 10,
+                        ),
+                        Text("pankaj.choudhary@coderootz.com"),
+                      ],
+                ),
+            ),
+        ],
+      ),
       ),
       Padding(
         padding: tilePadding,
@@ -55,16 +89,27 @@ var myDrawer = Drawer(
           ),
         ),
       ),
-      Padding(
-        padding: tilePadding,
-        child: ListTile(
-          leading: const Icon(Icons.logout),
-          title: Text(
-            'L O G O U T',
-            style: drawerTextColor,
+      ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed))
+                return AppColors.mainColorTwo;
+              return AppColors.mainColor; // Use the component's default.
+            },
           ),
         ),
-      ),
+        child: Text(
+          'L O G O U T',
+        ),
+        onPressed: () {
+          Get.defaultDialog(
+              title: "Need Your Action",
+              middleText: "Do You Want To Logout ?",
+              onConfirm: () =>
+                  {sharedPreferences.clear(), Get.offAll(()=>LoginScreen())});
+        },
+      )
     ],
   ),
 );

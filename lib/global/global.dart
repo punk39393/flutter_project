@@ -1,7 +1,10 @@
-
 import 'package:shared_preferences/shared_preferences.dart';
 
-SharedPreferences? sharedPreferences;
+import '../models/login_model.dart';
+
+late SharedPreferences sharedPreferences;
+User? user;
+
 
 //
 // Position? position;

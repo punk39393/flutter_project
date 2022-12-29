@@ -104,8 +104,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           showDialog(
             context: context,
             builder: (c) {
-              return const ErrorDialog(
-                message: "Please select an image",
+              return  ErrorDialog(
+                message: "Please select an image", 
+                clickListener: () {  },
               );
             },
           );
@@ -123,8 +124,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
           showDialog(
             context: context,
             builder: (c) {
-              return const LoadingDialog(
+              return LoadingDialog(
                 message: "Registering Account",
+                clickListener: () {
+              Navigator.pop(context);
+            },
               );
             },
           );
@@ -137,8 +141,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
           showDialog(
             context: context,
             builder: (c) {
-              return const ErrorDialog(
+              return  ErrorDialog(
                 message: "Please fill the required info for Registration. ",
+                 clickListener: () { },
+                
               );
             },
           );
@@ -148,8 +154,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         showDialog(
           context: context,
           builder: (c) {
-            return const ErrorDialog(
-              message: "Password do not match",
+            return  ErrorDialog(
+              message: "Password do not match", 
+              clickListener: () {  },
             );
           },
         );
@@ -419,7 +426,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         text: 'Login',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Get.to(const LoginScreen());
+                            Get.to(LoginScreen());
                           },
                         style: TextStyle(
                           fontWeight: FontWeight.bold,

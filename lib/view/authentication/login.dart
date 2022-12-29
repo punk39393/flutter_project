@@ -1,15 +1,18 @@
+import 'package:floor/floor.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project/bindings/appControllerBinding.dart';
 import 'package:project/controllers/login_controller.dart';
 import 'package:project/view/authentication/register.dart';
 import 'package:project/view/home/RiderDashBoard.dart';
 
 import '../../global/global.dart';
-import '../../main.dart';
-import '../../res/app_colors/AppColors.dart';
-import '../home_screen.dart';
+import '../../res/app_colors/app_colors.dart';
+import '../widget/LoadingWidget.dart';
+import '../widget/circular_progress_bar.dart';
 import '../widget/custom_text_field.dart';
 import '../widget/error_dialog.dart';
 import '../widget/header_widget.dart';
@@ -23,13 +26,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final double _headerHeight = 250;
+  final double _headerHeight = 200;
   final LoginController loginController = Get.put(LoginController());
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  
-
 //form validation for login
   formValidation() {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
@@ -44,41 +45,78 @@ class _LoginScreenState extends State<LoginScreen> {
         loginNow();
       }
     } else {
-      showDialog(
-        context: context,
-        builder: (c) {
-          return const ErrorDialog(
-            message: "Please enter email/password.",
-          );
-        },
-      );
+      showErrorDialoag("Please enter email/password.");
+      // showDialog(
+      //   context: context,
+      //   builder: (c) {
+      //     return ErrorDialog(
+      //       message: "Please enter email/password.",
+      //       clickListener: () {
+      //         Navigator.pop(context);
+      //       },
+      //     );
+      //   },
+      // );
     }
+  }
+
+  showErrorDialoag(String msg) {
+    showDialog(
+      context: context,
+      builder: (c) {
+        return ErrorDialog(
+          message: msg,
+          clickListener: () {
+            Navigator.pop(context);
+          },
+        );
+      },
+    );
   }
 
 //login function
   loginNow() async {
-   
-    showDialog(
-      context: context,
-      builder: (c) {
-        return const LoadingDialog(
-          message: "Checking Credentials...",
-        );
-      },
-    );
-    
+    // showDialog(
+    //   context: context,
+    //   builder: (dialogContext) {
+    //     return  LoadingDialog(
+    //       message: "Checking Credentials...",
+    //
+    //     );
+    //   },
+    //
+    // );
+    //CircularProgressIndicator();
     var email = emailController.text.trim();
     var password = passwordController.text.trim();
     loginController.loginUsingEmail(email, password);
+    // loginController.success.value==true?
+    // goToNextScreen():
+    // Get.defaultDialog(title: "Oops ! ",middleText: "Your Email/Password does not matched \n Please Check Again");
+
+    //ever(loginController.success, fireEvent, condition: context);
+
     loginController.success.listen((value) {
       if (value == true) {
-        Navigator.pop(context);
-        sharedPreferences!.setString('email', emailController.text.trim());
-        Get.to(RiderDashBoard());
+        sharedPreferences.setString('email', emailController.text.trim());
+        Get.offAll(() => RiderDashBoard());
+      } else {
+        //showErrorDialoag("Your Email/Password does not matched \n Please Check Again");
+        Get.defaultDialog(
+            title: "Oops! ",
+            middleText:
+                "Wrong Credentials");
+       
       }
-      
     });
-    
+
+    //loginController.success.value ? moveToNextScreen(): Navigator.pop(context);
+  }
+
+  goToNextScreen() {
+    sharedPreferences.setString('email', emailController.text.trim());
+    Get.to(() => RiderDashBoard());
+    // Get.to(() => RiderDashBoard(), binding: AppControllersBinding());
   }
 
 //read data from firestore and save it locally

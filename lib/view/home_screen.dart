@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project/view/widget/simple_app_bar.dart';
+import '../controllers/dashboard_controller.dart';
 
-import '../controllers/login_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetX<LoginController>(
-        init: LoginController(),
+    return GetX<DashBoardController>(
+        init: DashBoardController(),
         builder: (controller) {
           return Scaffold(
-            appBar: AppBar(
-              title: Text('Posts'),
-            ),
+            appBar: CustomAppBar(appBar_title: 'Homepage'),
             body: controller.loading.value
                 ? Center(child: CircularProgressIndicator())
                 : ListView(
-                    children: controller.posts
-                        .map<Widget>((post) => ListTile(
-                              leading: Text(post.id.toString()),
-                              title: Text(post.title),
-                              subtitle: Text(post.body),
-                              trailing: Text('User ${post.userId}'),
-                            ))
-                        .toList(),
+                    // children: controller.ordersDetails.data<Widget>((post) => ListTile(
+                    //           leading: Text(post.id.toString()),
+                    //           title: Text(post.title),
+                    //           subtitle: Text(post.body),
+                    //           trailing: Text('User ${post.userId}'),
+                    //         ))
+                    //     .toList(),
                   ),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.add),
@@ -32,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               },
             ),
           );
-        });
+   });
   }
 }
 

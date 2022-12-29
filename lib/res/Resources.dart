@@ -3,7 +3,7 @@ import 'package:project/res/dimentions/AppDimension.dart';
 import 'package:project/res/strings/FrenchStrings.dart';
 import 'package:project/res/strings/Strings.dart';
 
-import 'app_colors/AppColors.dart';
+import 'app_colors/app_colors.dart';
 import 'strings/EnglishStrings.dart';
 
 class Resources {

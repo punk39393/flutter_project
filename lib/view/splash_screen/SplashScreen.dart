@@ -8,10 +8,11 @@ import 'package:lottie/lottie.dart';
 import 'package:project/global/global.dart';
 import 'package:project/utils/Utils.dart';
 import 'package:project/view/home/RiderDashBoard.dart';
+import 'package:project/view/widget/LoadingWidget.dart';
 import 'package:project/view/widget/loading_dialog.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
-import '../../res/app_colors/AppColors.dart';
+import '../../res/app_colors/app_colors.dart';
 import '../../res/strings/Strings.dart';
 import '../authentication/login.dart';
 
@@ -33,15 +34,15 @@ class _SplashScreenState extends State<SplashScreen>
   bool copAnimated = false;
   bool animateCafeText = false;
 
-    selectScreens() async{
-          if (sharedPreferences!.getString('email') != null) {
+  selectScreens() async {
+    if (sharedPreferences.getString('email') != null) {
       Get.to(RiderDashBoard());
     }
     //if not send to auth screen
     else {
       Get.to(LoginScreen());
     }
-    }
+  }
   // startTimer() {
   //   Timer(
   //     const Duration(seconds: 6),
@@ -67,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen>
         });
       }
     });
-    
+
     // startTimer();
     selectScreens();
   }
@@ -192,7 +193,7 @@ class _BottomPart extends StatelessWidget {
                   const SizedBox(width: 25),
                   GestureDetector(
                     onTap: () {
-                      LoadingDialog();
+                      LoadingWidget();
                       Get.to(() => LoginScreen());
                     },
                     child: Container(

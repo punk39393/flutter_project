@@ -8,11 +8,11 @@ class ApiProvider extends GetConnect {
   final String contentType = 'application/json';
   final String token = '12342342342314sfadfqwerewqrwerewrewqr2er213reqedeqw';
 
-  final String BASE_URL = "https://shippin.coderootz.com/api/";
- // final String BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
+  final String BASE_URL = "https://hyperlocal.coderootz.com/api/";
+ 
 
-  Future<Response> getRequest() =>
-      get(BASE_URL);
+  Future<Response> getRequest(String endpoint) =>
+      get(BASE_URL+endpoint);
 
 
   Future<Response> postRequest(String endpoint, Map<String,dynamic> map) => post(
