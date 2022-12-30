@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/bindings/appControllerBinding.dart';
+import 'package:project/bindings/appControllerBinding.dart';
 import 'package:project/controllers/login_controller.dart';
 import 'package:project/view/authentication/register.dart';
 import 'package:project/view/home/RiderDashBoard.dart';

@@ -1,13 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/models/dashboard_model.dart';
 import 'package:project/res/app_colors/app_colors.dart';
 import 'package:project/utils/Utils.dart';
-import 'package:project/view/widget/progress_bar.dart';
+import 'package:project/view/orders_screen/new_orders_screen.dart';
 import '../../controllers/dashboard_controller.dart';
-import '../../localDB/appdatabase.dart';
 import '../../utils/appBar_sideDrawer/constants.dart';
 import '../widget/simple_app_bar.dart';
 
@@ -48,13 +45,15 @@ class RiderDashBoardState extends State<RiderDashBoard> {
         drawer: myDrawer,
         body: RefreshIndicator(
           onRefresh: () async {
-              getData();
-            }, 
-          child: Stack(
-            children: [Obx(() => controller.loading.value == false
+            getData();
+          },
+          child: Stack(children: [
+            Obx(() => controller.loading.value == false
                 ? Center(child: CircularProgressIndicator())
                 : Center(
                     child: GridView.count(
+                    shrinkWrap: true,
+                    // childAspectRatio:((MediaQuery. of(context). size. width)/150),
                     primary: false,
                     padding: const EdgeInsets.all(20),
                     crossAxisSpacing: 10,
@@ -65,6 +64,7 @@ class RiderDashBoardState extends State<RiderDashBoard> {
                         focusColor: AppColors.green,
                         onTap: () {
                           utils.successSnackBar("clicked", "");
+                          Get.to(() => NewOrdersScreen());
                         },
                         child: (utils.baseContainer(
                             Icons.home, "All", dashData.assigned.toString())),
@@ -83,7 +83,21 @@ class RiderDashBoardState extends State<RiderDashBoard> {
                         },
                         child: (utils.baseContainer(Icons.home, "All", "4")),
                       ),
-          
+                      InkWell(
+                        focusColor: AppColors.green,
+                        onTap: () {
+                          utils.successSnackBar("clicked", "");
+                        },
+                        child: (utils.baseContainer(Icons.home, "All", "4")),
+                      ),
+                      InkWell(
+                        focusColor: AppColors.green,
+                        onTap: () {
+                          utils.successSnackBar("clicked", "");
+                        },
+                        child: (utils.baseContainer(Icons.home, "All", "4")),
+                      ),
+
                       // InkWell(
                       //   focusColor: AppColors.green,
                       //       onTap: () {
@@ -95,10 +109,10 @@ class RiderDashBoardState extends State<RiderDashBoard> {
                       // ),
                     ],
                   )
-          
+
                     // MyStatelessWidget(),
-                    )),]
-          ),
+                    )),
+          ]),
         ));
   }
 }

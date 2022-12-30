@@ -3,9 +3,12 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:project/api/api_exceptions.dart';
 import 'package:project/localDB/appdatabase.dart';
+import 'package:project/localDB/appdatabase.dart';
 
 import '../api/api_end_points.dart';
 import '../api/base_api_provider.dart';
+import '../global/global.dart';
+import '../models/login_model.dart';
 import '../global/global.dart';
 import '../models/login_model.dart';
 import '../models/post_model.dart';
@@ -16,9 +19,11 @@ class LoginController extends GetxController {
   LoginResponse? loginResponse;
   var posts = <PostModel>[].obs;
   // var userData = User;
+  // var userData = User;
   var loading = false.obs;
   RxBool success = false.obs;
   AppDatabase? appDatabase;
+
 
   ApiProvider _provider = ApiProvider();
   ApiEndPoints _apiEndPoints = ApiEndPoints();
@@ -34,6 +39,7 @@ class LoginController extends GetxController {
       'password': password,
       'device_token': 'werfqwefvsdfvsv2135234',
     });
+
 
     if (response.statusCode == 200) {
       try {

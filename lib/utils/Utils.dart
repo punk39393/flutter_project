@@ -15,6 +15,7 @@ class Utils extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.green,
         duration: const Duration(seconds: 2),
+    
         colorText: Colors.white);
   }
 
@@ -83,6 +84,7 @@ class Utils extends GetxController {
   }
 
   boxDacoration(){
+
     return BoxDecoration(
       borderRadius: BorderRadius.circular(5),
       // color: AppColors.mainColorTwo,
@@ -120,11 +122,12 @@ class Utils extends GetxController {
         ),
 
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           verticalDirection: VerticalDirection.down,
           children: [
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
             Center(
               child: Icon(
                 iconData,

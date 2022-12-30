@@ -1,5 +1,11 @@
 import 'package:get/get.dart';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:project/utils/Utils.dart';
+import 'package:project/view/authentication/login.dart';
+import 'package:project/view/home/RiderDashBoard.dart';
+import '../../res/app_colors/app_colors.dart';
+import 'package:project/global/global.dart';
 import 'package:project/utils/Utils.dart';
 import 'package:project/view/authentication/login.dart';
 import 'package:project/view/home/RiderDashBoard.dart';
@@ -33,6 +39,7 @@ var drawerTextColor = const TextStyle(
 );
 var button = ButtonStyle(
     backgroundColor: MaterialStateProperty.all(AppColors.mainColorTwo));
+
 
 var tilePadding = const EdgeInsets.only(left: 8.0, right: 8, top: 8);
 var myDrawer = Drawer(
